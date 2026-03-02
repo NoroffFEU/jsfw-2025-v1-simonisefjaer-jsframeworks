@@ -11,7 +11,7 @@ interface ProductCardProps {
     imageUrl: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ id, title, price, discountedPrice, imageUrl }) => {
+const ProductCard = ({ id, title, price, discountedPrice, imageUrl }: ProductCardProps) => {
     const navigate = useNavigate();
     const [isNavigating, setIsNavigating] = useState(false);
 

@@ -5,5 +5,7 @@ export const Route = createFileRoute('/productRoute/$id')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/productRoute/$id"!</div>
+  return (
+    <div> "/productRoute/$id"!</div>
+  );
 }
