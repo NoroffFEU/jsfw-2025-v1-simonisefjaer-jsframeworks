@@ -55,7 +55,7 @@ export const getOnlineShopDetails = async (id: string): Promise<onlineShopDetail
         image: { url: data.image?.url ?? "" },
         rating: data.rating,
         tags: data.tags ?? [],
-        reviews: (data.reviews ?? []).map((review: any) => ({
+        reviews: (data.reviews ?? []).map((review: { id: string; username: string; rating: number; description: string }) => ({
             id: review.id,
             username: review.username,
             rating: review.rating,
@@ -74,7 +74,7 @@ export const getOnlineShopProducts = async (): Promise<OnlineShopProductSummary[
     const json = await response.json();
     const items = json.data ?? [];
 
-    return items.map((item: any) => ({
+    return items.map((item: { id: string | number; title?: string; price?: number; discountedPrice?: number; image?: { url?: string }; images?: Array<{ url?: string }> }) => ({
         id: String(item.id),
         title: String(item.title ?? ""),
         price: Number(item.price ?? 0),
