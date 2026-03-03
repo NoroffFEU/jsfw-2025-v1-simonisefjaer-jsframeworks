@@ -64,6 +64,9 @@ export default function NavBar() {
               <span className="sr-only">View notifications</span>
               <BellIcon aria-hidden="true" className="size-6" />
             </button>
+            <button>
+              <span className="sr-only">View cart</span>
+            </button>
 
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">

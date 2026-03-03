@@ -103,6 +103,40 @@ npm run lint
 - Tailwind CSS & ShadCn
 - Vitest + Testing Library
 
+## AI Usage/Questions for stuff i needed a deeper explanation on to understand
+
+- please explain to me when i add a new route how it works in correlation with the main root. It explained the process of when first creating a new route in a different file i then import it inside of the <outlet> are of my __root folder to render it.
+
+- Please help me resolve the "any" type issue i have in my onlineShop "Reviews" object - keyValue pairs. It helped explain me how i could both add it and understand it.
+
+- Will shadcn properly make a folder inside of my already existing components folder? Yes it will.
+
+- What are the random name generated tanstack files? It was temporary cached files which i then added to .gitignore
+
+- ASked if FC (funciton component) is even nescesary anymore, which it really wasnt, so i refactored my type definition on my component to have the interface definition at the end of my const function instead of using FC. example of what it looks like now: 
+```typescript
+interface SpecificProductCardProps {
+    id: string;
+    title: string;
+    price: number;
+    discountedPrice: number;
+    imageUrl: string;
+}
+
+const SpecificProductCard = ({ id, title, price, discountedPrice, imageUrl }: SpecificProductCardProps) => {
+
+}
+
+// used to be like this
+const SpecificProductCard: React.FC<SpecificProductCardProps> = ({ id, title, price, discountedPrice, imageUrl }) => {
+
+}
+```
+
+- Asked AI about a bug i couldnt figure out about why my rating wouldnt show properly, which i managed to find myself after AI told me there could be a problem with how the api is structured Vs how i wrote my API type.
+
+- Asked AI to explain Matchroute and fuzzy for me.
+
 
 
 # SimIceDev

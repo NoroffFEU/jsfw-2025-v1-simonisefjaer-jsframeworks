@@ -21,6 +21,8 @@ export type OnlineShopProductSummary = {
     price: number,
     discountedPrice: number,
     imageUrl: string,
+    rating?: number,
+    description?: string,
 }
 
 const resolveImageUrl = (image: unknown, images?: unknown): string => {
@@ -74,12 +76,15 @@ export const getOnlineShopProducts = async (): Promise<OnlineShopProductSummary[
     const json = await response.json();
     const items = json.data ?? [];
 
-    return items.map((item: { id: string | number; title?: string; price?: number; discountedPrice?: number; image?: { url?: string }; images?: Array<{ url?: string }> }) => ({
+    return items.map((item: { id: string | number; title?: string; price?: number; discountedPrice?: number; image?: { url?: string }; images?: Array<{ url?: string }>; rating?: number; description?: string }) => ({
         id: String(item.id),
         title: String(item.title ?? ""),
         price: Number(item.price ?? 0),
         discountedPrice: Number(item.discountedPrice ?? item.price ?? 0),
         imageUrl: resolveImageUrl(item.image, item.images),
+        description: String(item.description ?? ""),
+        rating: item.rating,
+
     }));
 };
 

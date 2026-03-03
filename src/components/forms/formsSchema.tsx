@@ -1,5 +1,6 @@
 import * as z from "zod"
 
+// TODO : make this template i got from shadcn work with the form required in the project and add more fields if needed
 export const formSchema = z.object({
   title: z
     .string()
