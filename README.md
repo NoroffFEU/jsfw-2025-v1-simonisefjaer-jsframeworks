@@ -133,6 +133,9 @@ const SpecificProductCard: React.FC<SpecificProductCardProps> = ({ id, title, pr
 }
 ```
 
+- Asked AI about a bug i couldnt figure out about why my rating wouldnt show properly, which i managed to find myself after AI told me there could be a problem with how the api is structured Vs how i wrote my API type.
+
+- Asked AI to explain Matchroute and fuzzy for me.
 
 
 

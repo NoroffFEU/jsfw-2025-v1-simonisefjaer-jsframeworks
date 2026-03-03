@@ -9,9 +9,10 @@ interface ProductCardProps {
     price: number;
     discountedPrice: number;
     imageUrl: string;
+    rating?: number;
 }
 
-const ProductCard = ({ id, title, price, discountedPrice, imageUrl }: ProductCardProps) => {
+const ProductCard = ({rating, id, title, price, discountedPrice, imageUrl }: ProductCardProps) => {
     const navigate = useNavigate();
     const [isNavigating, setIsNavigating] = useState(false);
 
@@ -31,6 +32,7 @@ const ProductCard = ({ id, title, price, discountedPrice, imageUrl }: ProductCar
                 <h2 className="text-lg font-semibold mb-2">{title}</h2>
                 <p className="text-gray-500 line-through mb-1">${price.toFixed(2)}</p>
                 <p className="text-green-500 font-bold">${discountedPrice.toFixed(2)}</p>
+                <p className="text-yellow-500 font-bold">Rating: {rating ? rating : "N/A"}</p>
                 <button
                     type="button"
                     onClick={handleViewDetails}
