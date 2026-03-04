@@ -8,80 +8,98 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as ProductRouteRouteImport } from './routes/productRoute'
-import { Route as ProductRouteIdRouteImport } from './routes/productRoute.$id'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as ProductRouteRouteImport } from "./routes/productRoute";
+import { Route as ContactRouteRouteImport } from "./routes/contactRoute";
+import { Route as ProductRouteIdRouteImport } from "./routes/productRoute.$id";
 
 const ProductRouteRoute = ProductRouteRouteImport.update({
-  id: '/productRoute',
-  path: '/productRoute',
+  id: "/productRoute",
+  path: "/productRoute",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
+const ContactRouteRoute = ContactRouteRouteImport.update({
+  id: "/contactRoute",
+  path: "/contactRoute",
+  getParentRoute: () => rootRouteImport,
+} as any);
 const ProductRouteIdRoute = ProductRouteIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
+  id: "/$id",
+  path: "/$id",
   getParentRoute: () => ProductRouteRoute,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/productRoute': typeof ProductRouteRouteWithChildren
-  '/productRoute/$id': typeof ProductRouteIdRoute
+  "/contactRoute": typeof ContactRouteRoute;
+  "/productRoute": typeof ProductRouteRouteWithChildren;
+  "/productRoute/$id": typeof ProductRouteIdRoute;
 }
 export interface FileRoutesByTo {
-  '/productRoute': typeof ProductRouteRouteWithChildren
-  '/productRoute/$id': typeof ProductRouteIdRoute
+  "/contactRoute": typeof ContactRouteRoute;
+  "/productRoute": typeof ProductRouteRouteWithChildren;
+  "/productRoute/$id": typeof ProductRouteIdRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/productRoute': typeof ProductRouteRouteWithChildren
-  '/productRoute/$id': typeof ProductRouteIdRoute
+  __root__: typeof rootRouteImport;
+  "/contactRoute": typeof ContactRouteRoute;
+  "/productRoute": typeof ProductRouteRouteWithChildren;
+  "/productRoute/$id": typeof ProductRouteIdRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/productRoute' | '/productRoute/$id'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/productRoute' | '/productRoute/$id'
-  id: '__root__' | '/productRoute' | '/productRoute/$id'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/contactRoute" | "/productRoute" | "/productRoute/$id";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/contactRoute" | "/productRoute" | "/productRoute/$id";
+  id: "__root__" | "/contactRoute" | "/productRoute" | "/productRoute/$id";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  ProductRouteRoute: typeof ProductRouteRouteWithChildren
+  ContactRouteRoute: typeof ContactRouteRoute;
+  ProductRouteRoute: typeof ProductRouteRouteWithChildren;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/productRoute': {
-      id: '/productRoute'
-      path: '/productRoute'
-      fullPath: '/productRoute'
-      preLoaderRoute: typeof ProductRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/productRoute/$id': {
-      id: '/productRoute/$id'
-      path: '/$id'
-      fullPath: '/productRoute/$id'
-      preLoaderRoute: typeof ProductRouteIdRouteImport
-      parentRoute: typeof ProductRouteRoute
-    }
+    "/productRoute": {
+      id: "/productRoute";
+      path: "/productRoute";
+      fullPath: "/productRoute";
+      preLoaderRoute: typeof ProductRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/contactRoute": {
+      id: "/contactRoute";
+      path: "/contactRoute";
+      fullPath: "/contactRoute";
+      preLoaderRoute: typeof ContactRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/productRoute/$id": {
+      id: "/productRoute/$id";
+      path: "/$id";
+      fullPath: "/productRoute/$id";
+      preLoaderRoute: typeof ProductRouteIdRouteImport;
+      parentRoute: typeof ProductRouteRoute;
+    };
   }
 }
 
 interface ProductRouteRouteChildren {
-  ProductRouteIdRoute: typeof ProductRouteIdRoute
+  ProductRouteIdRoute: typeof ProductRouteIdRoute;
 }
 
 const ProductRouteRouteChildren: ProductRouteRouteChildren = {
   ProductRouteIdRoute: ProductRouteIdRoute,
-}
+};
 
 const ProductRouteRouteWithChildren = ProductRouteRoute._addFileChildren(
   ProductRouteRouteChildren,
-)
+);
 
 const rootRouteChildren: RootRouteChildren = {
+  ContactRouteRoute: ContactRouteRoute,
   ProductRouteRoute: ProductRouteRouteWithChildren,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();

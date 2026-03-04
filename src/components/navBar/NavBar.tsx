@@ -1,14 +1,24 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from '@tanstack/react-router'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "@tanstack/react-router";
+import { OverviewShoppingCart } from "../shoppingCart/OverviewShoppingCart";
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Products', href: '/productRoute', current: false },
-]
+  { name: "Home", href: "/", current: true },
+  { name: "Products", href: "/productRoute", current: false },
+  { name: "Contact", href: "/contactRoute", current: false },
+];
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function NavBar() {
@@ -24,29 +34,29 @@ export default function NavBar() {
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
-              <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
+              <Bars3Icon
+                aria-hidden="true"
+                className="block size-6 group-data-open:hidden"
+              />
+              <XMarkIcon
+                aria-hidden="true"
+                className="hidden size-6 group-data-open:block"
+              />
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex shrink-0 items-center">
-              <img
-                alt="Your Company"
-                // toDo: replace with actual logo or no logo at all
-                src="https://placehold.co/32x32?text=Logo"
-                className="h-8 w-auto"
-              />
-            </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={item.current ? "page" : undefined}
                     className={classNames(
-                      item.current ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium',
+                      item.current
+                        ? "bg-gray-950/50 text-white"
+                        : "text-gray-300 hover:bg-white/5 hover:text-white",
+                      "rounded-md px-3 py-2 text-sm font-medium",
                     )}
                   >
                     {item.name}
@@ -56,18 +66,7 @@ export default function NavBar() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />
-            </button>
-            <button>
-              <span className="sr-only">View cart</span>
-            </button>
-
+            <OverviewShoppingCart />
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
               <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
@@ -75,7 +74,7 @@ export default function NavBar() {
                 <span className="sr-only">Open user menu</span>
                 <img
                   alt=""
-                  // toDo: replace with actual user image which will be dynamically loaded according to the logged in user
+                  // toDo: replace with actual user image which will be dynamically loaded according to the logged in user NOTE: this isnt actually required in this project
                   src="https://placehold.co/32x32?text=User"
                   className="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
                 />
@@ -87,7 +86,7 @@ export default function NavBar() {
               >
                 <MenuItem>
                   <Link
-                    to  ="/profile"
+                    to="/profile"
                     className="block px-4 py-2 text-sm text-gray-300 data-focus:bg-white/5 data-focus:outline-hidden"
                   >
                     Your profile
@@ -95,7 +94,7 @@ export default function NavBar() {
                 </MenuItem>
                 <MenuItem>
                   <Link
-                    to  ="/settings"
+                    to="/settings"
                     className="block px-4 py-2 text-sm text-gray-300 data-focus:bg-white/5 data-focus:outline-hidden"
                   >
                     Settings
@@ -103,7 +102,7 @@ export default function NavBar() {
                 </MenuItem>
                 <MenuItem>
                   <Link
-                    to  ="/login"
+                    to="/login"
                     className="block px-4 py-2 text-sm text-gray-300 data-focus:bg-white/5 data-focus:outline-hidden"
                   >
                     Sign out
@@ -122,10 +121,12 @@ export default function NavBar() {
               key={item.name}
               as="a"
               href={item.href}
-              aria-current={item.current ? 'page' : undefined}
+              aria-current={item.current ? "page" : undefined}
               className={classNames(
-                item.current ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium',
+                item.current
+                  ? "bg-gray-950/50 text-white"
+                  : "text-gray-300 hover:bg-white/5 hover:text-white",
+                "block rounded-md px-3 py-2 text-base font-medium",
               )}
             >
               {item.name}
@@ -134,5 +135,5 @@ export default function NavBar() {
         </div>
       </DisclosurePanel>
     </Disclosure>
-  )
+  );
 }

@@ -1,31 +1,34 @@
-import { createFileRoute } from '@tanstack/react-router'
-import SpecificProductCard from '../components/specificProduct/SpecificProduct'
-import { getOnlineShopProducts } from '@/api/onlineShop';
-import { useQuery } from '@tanstack/react-query'
-import { useParams } from '@tanstack/react-router';
+import { createFileRoute } from "@tanstack/react-router";
+import SpecificProductCard from "../components/specificProduct/SpecificProduct";
+import { getOnlineShopProducts } from "@/api/onlineShop";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/productRoute/$id')({
+export const Route = createFileRoute("/productRoute/$id")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  const { id } = useParams({ from: '/productRoute/$id' })
+  const { id } = useParams({ from: "/productRoute/$id" });
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['products'],
+    queryKey: ["products"],
     queryFn: getOnlineShopProducts,
-  })
+  });
 
-  if (isLoading) return <p className="px-4 py-6 text-gray-600">Loading products...</p>
+  if (isLoading)
+    return <p className="px-4 py-6 text-gray-600">Loading products...</p>;
   if (isError) {
-    const message = error instanceof Error ? error.message : 'Failed to load products'
-    return <p className="px-4 py-6 text-red-600">{message}</p>
+    const message =
+      error instanceof Error ? error.message : "Failed to load products";
+    return <p className="px-4 py-6 text-red-600">{message}</p>;
   }
 
-  const products = data ?? []
-  const product = products.find((p) => String(p.id) === String(id))
+  const products = data ?? [];
+  const product = products.find((p) => String(p.id) === String(id));
 
-  if (!product) return <p className="px-4 py-6 text-gray-600">Product not found</p>
+  if (!product)
+    return <p className="px-4 py-6 text-gray-600">Product not found</p>;
 
   return (
     <SpecificProductCard
@@ -37,5 +40,5 @@ function RouteComponent() {
       imageUrl={product.imageUrl}
       description={product.description}
     />
-  )
+  );
 }

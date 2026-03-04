@@ -10,11 +10,13 @@ A React online shop built with Vite, TypeScript, TanStack Router, and TanStack Q
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/NoroffFEU/jsfw-2025-v1-simonisefjaer-jsframeworks.git
    ```
 
 2. Navigate to the project folder:
+
    ```bash
    cd jsfw-2025-v1-simonisefjaer-jsframeworks
    ```
@@ -24,6 +26,7 @@ A React online shop built with Vite, TypeScript, TanStack Router, and TanStack Q
 This project was set up with the following installations:
 
 ### Core
+
 ```bash
 npm install react react-dom
 npm install @tanstack/react-router @tanstack/react-router-devtools
@@ -31,6 +34,7 @@ npm install @tanstack/react-query
 ```
 
 ### Styling
+
 ```bash
 npm install tailwindcss @tailwindcss/vite
 npx shadcn@latest init
@@ -38,6 +42,7 @@ npx shadcn@latest add button
 ```
 
 ### UI Components
+
 ```bash
 npm install @headlessui/react @heroicons/react
 npm install lucide-react
@@ -46,14 +51,17 @@ npm install class-variance-authority clsx tailwind-merge
 ```
 
 ### Forms & Validation
+
 ```bash
 npm install zod
 ```
 
 ### Dev Dependencies
+
 ```bash
 npm install -D vite @vitejs/plugin-react
 npm install -D typescript @types/react @types/react-dom @types/node
+npm install --save-dev --save-exact prettier
 npm install -D @tanstack/router-plugin
 npm install -D @tanstack/react-query-devtools
 npm install -D vitest jsdom @testing-library/react @testing-library/dom @testing-library/jest-dom @testing-library/user-event
@@ -65,17 +73,21 @@ npm install -D tw-animate-css
 ## Running the Project
 
 ### Development Server
+
 ```bash
 npm run dev
 ```
+
 Opens the app at [http://localhost:5173](http://localhost:5173)
 
 ### Production Build
+
 ```bash
 npm run build
 ```
 
 ### Preview Production Build
+
 ```bash
 npm run preview
 ```
@@ -105,7 +117,7 @@ npm run lint
 
 ## AI Usage/Questions for stuff i needed a deeper explanation on to understand
 
-- please explain to me when i add a new route how it works in correlation with the main root. It explained the process of when first creating a new route in a different file i then import it inside of the <outlet> are of my __root folder to render it.
+- please explain to me when i add a new route how it works in correlation with the main root. It explained the process of when first creating a new route in a different file i then import it inside of the <outlet> are of my \_\_root folder to render it.
 
 - Please help me resolve the "any" type issue i have in my onlineShop "Reviews" object - keyValue pairs. It helped explain me how i could both add it and understand it.
 
@@ -113,30 +125,39 @@ npm run lint
 
 - What are the random name generated tanstack files? It was temporary cached files which i then added to .gitignore
 
-- ASked if FC (funciton component) is even nescesary anymore, which it really wasnt, so i refactored my type definition on my component to have the interface definition at the end of my const function instead of using FC. example of what it looks like now: 
+- ASked if FC (funciton component) is even nescesary anymore, which it really wasnt, so i refactored my type definition on my component to have the interface definition at the end of my const function instead of using FC. example of what it looks like now:
+
 ```typescript
 interface SpecificProductCardProps {
-    id: string;
-    title: string;
-    price: number;
-    discountedPrice: number;
-    imageUrl: string;
+  id: string;
+  title: string;
+  price: number;
+  discountedPrice: number;
+  imageUrl: string;
 }
 
-const SpecificProductCard = ({ id, title, price, discountedPrice, imageUrl }: SpecificProductCardProps) => {
-
-}
+const SpecificProductCard = ({
+  id,
+  title,
+  price,
+  discountedPrice,
+  imageUrl,
+}: SpecificProductCardProps) => {};
 
 // used to be like this
-const SpecificProductCard: React.FC<SpecificProductCardProps> = ({ id, title, price, discountedPrice, imageUrl }) => {
-
-}
+const SpecificProductCard: React.FC<SpecificProductCardProps> = ({
+  id,
+  title,
+  price,
+  discountedPrice,
+  imageUrl,
+}) => {};
 ```
 
 - Asked AI about a bug i couldnt figure out about why my rating wouldnt show properly, which i managed to find myself after AI told me there could be a problem with how the api is structured Vs how i wrote my API type.
 
 - Asked AI to explain Matchroute and fuzzy for me.
 
-
+- Asked Ai to help me use Sheet from shadcn in my current shoppingCart setup that i created by following a tutorial from WebDevSimplified. This helped me make a sidebar for my cart which looks pretty clean.
 
 # SimIceDev
