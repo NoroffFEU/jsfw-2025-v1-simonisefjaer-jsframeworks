@@ -1,19 +1,19 @@
-import { Link } from '@tanstack/react-router'
+import { Link } from "@tanstack/react-router";
 
 const footerLinks = {
   resources: [
-    { name: 'Flowbite', href: '', external: true },
-    { name: 'Tailwind CSS', href: '', external: true },
+    { name: "Flowbite", href: "", external: true },
+    { name: "Tailwind CSS", href: "", external: true },
   ],
   followUs: [
-    { name: 'Github', href: '', external: true },
-    { name: 'Discord', href: '', external: true },
+    { name: "Github", href: "", external: true },
+    { name: "Discord", href: "", external: true },
   ],
   legal: [
-    { name: 'Privacy Policy', href: '/privacy', external: false },
-    { name: 'Terms & Conditions', href: '/terms', external: false },
+    { name: "Privacy Policy", href: "/privacy", external: false },
+    { name: "Terms & Conditions", href: "/terms", external: false },
   ],
-}
+};
 
 export default function Footer() {
   return (
@@ -93,7 +93,7 @@ export default function Footer() {
         <hr className="my-6 border-default sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-body sm:text-center">
-            © 2023{' '}
+            © 2023{" "}
             <a href="#" className="hover:underline">
               NORShop™
             </a>
@@ -186,5 +186,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

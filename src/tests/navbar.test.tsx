@@ -7,7 +7,7 @@ import NavBar from "../components/navBar/NavBar";
 
 vi.mock("@tanstack/react-router", async () => {
   const actual = await vi.importActual<typeof import("@tanstack/react-router")>(
-    "@tanstack/react-router"
+    "@tanstack/react-router",
   );
 
   return {
@@ -38,11 +38,13 @@ describe("NavBar", () => {
   it("should have correct href attributes", () => {
     renderNavBar();
     const homeLink = screen.getByRole("link", { name: /home/i });
-      expect(homeLink).toHaveAttribute("href", "/");
+    expect(homeLink).toHaveAttribute("href", "/");
   });
 
   it("should display logo or brand name", () => {
     renderNavBar();
-    expect(screen.getByRole("img", { name: /your company/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /your company/i }),
+    ).toBeInTheDocument();
   });
 });
