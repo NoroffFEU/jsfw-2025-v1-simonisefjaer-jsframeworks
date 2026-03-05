@@ -11,12 +11,23 @@ import {
 import { Button } from "@/components/ui/button";
 import { useShoppingCart } from "@/context/ShoppingCartContext";
 import { ShoppingCart, Trash2 } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 
-export function OverviewShoppingCart() {
+
+
+export default function OverviewShoppingCart() {
   const { cartItems, cartQuantity, removeFromCart, getTotalPrice, clearCart } =
     useShoppingCart();
+  
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleCheckout = () => {
+    setOpen(false);
+    navigate({ to: "/checkoutRoute" });
+  }
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <button
           type="button"
@@ -96,8 +107,9 @@ export function OverviewShoppingCart() {
             </Button>
             <SheetClose asChild>
               <Button
-                className="flex-1 text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2 h-8 sm:h-10"
+                className="flex-1 text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2 h-8 sm:h-10 text-white"
                 disabled={cartItems.length === 0}
+                onClick={handleCheckout}
               >
                 Checkout
               </Button>

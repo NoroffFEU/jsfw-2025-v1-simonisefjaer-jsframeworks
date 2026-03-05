@@ -9,10 +9,9 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "@tanstack/react-router";
-import { OverviewShoppingCart } from "../shoppingCart/OverviewShoppingCart";
+import OverviewShoppingCart from "../shoppingCart/OverviewShoppingCart";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
   { name: "Products", href: "/productRoute", current: false },
   { name: "Contact", href: "/contactRoute", current: false },
 ];

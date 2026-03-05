@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProductRouteRouteImport } from './routes/productRoute'
 import { Route as ContactRouteRouteImport } from './routes/contactRoute'
+import { Route as CheckoutSuccessRouteRouteImport } from './routes/checkoutSuccessRoute'
+import { Route as CheckoutRouteRouteImport } from './routes/checkoutRoute'
 import { Route as ProductRouteIdRouteImport } from './routes/productRoute.$id'
 
 const ProductRouteRoute = ProductRouteRouteImport.update({
@@ -23,6 +25,16 @@ const ContactRouteRoute = ContactRouteRouteImport.update({
   path: '/contactRoute',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutSuccessRouteRoute = CheckoutSuccessRouteRouteImport.update({
+  id: '/checkoutSuccessRoute',
+  path: '/checkoutSuccessRoute',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRouteRoute = CheckoutRouteRouteImport.update({
+  id: '/checkoutRoute',
+  path: '/checkoutRoute',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductRouteIdRoute = ProductRouteIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -30,30 +42,54 @@ const ProductRouteIdRoute = ProductRouteIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/checkoutRoute': typeof CheckoutRouteRoute
+  '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
 export interface FileRoutesByTo {
+  '/checkoutRoute': typeof CheckoutRouteRoute
+  '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/checkoutRoute': typeof CheckoutRouteRoute
+  '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/contactRoute' | '/productRoute' | '/productRoute/$id'
+  fullPaths:
+    | '/checkoutRoute'
+    | '/checkoutSuccessRoute'
+    | '/contactRoute'
+    | '/productRoute'
+    | '/productRoute/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/contactRoute' | '/productRoute' | '/productRoute/$id'
-  id: '__root__' | '/contactRoute' | '/productRoute' | '/productRoute/$id'
+  to:
+    | '/checkoutRoute'
+    | '/checkoutSuccessRoute'
+    | '/contactRoute'
+    | '/productRoute'
+    | '/productRoute/$id'
+  id:
+    | '__root__'
+    | '/checkoutRoute'
+    | '/checkoutSuccessRoute'
+    | '/contactRoute'
+    | '/productRoute'
+    | '/productRoute/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  CheckoutRouteRoute: typeof CheckoutRouteRoute
+  CheckoutSuccessRouteRoute: typeof CheckoutSuccessRouteRoute
   ContactRouteRoute: typeof ContactRouteRoute
   ProductRouteRoute: typeof ProductRouteRouteWithChildren
 }
@@ -72,6 +108,20 @@ declare module '@tanstack/react-router' {
       path: '/contactRoute'
       fullPath: '/contactRoute'
       preLoaderRoute: typeof ContactRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkoutSuccessRoute': {
+      id: '/checkoutSuccessRoute'
+      path: '/checkoutSuccessRoute'
+      fullPath: '/checkoutSuccessRoute'
+      preLoaderRoute: typeof CheckoutSuccessRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkoutRoute': {
+      id: '/checkoutRoute'
+      path: '/checkoutRoute'
+      fullPath: '/checkoutRoute'
+      preLoaderRoute: typeof CheckoutRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/productRoute/$id': {
@@ -97,6 +147,8 @@ const ProductRouteRouteWithChildren = ProductRouteRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
+  CheckoutRouteRoute: CheckoutRouteRoute,
+  CheckoutSuccessRouteRoute: CheckoutSuccessRouteRoute,
   ContactRouteRoute: ContactRouteRoute,
   ProductRouteRoute: ProductRouteRouteWithChildren,
 }
