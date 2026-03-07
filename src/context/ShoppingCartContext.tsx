@@ -70,7 +70,7 @@ export default function ShoppingCartProvider({
   children,
 }: ShoppingCartProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>(loadCart);
-  const [isOpen, setIsOpen] = useState(false);
+  const [, setIsOpen] = useState(false);
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => quantity + item.quantity,
