@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { useForm } from "@tanstack/react-form"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
@@ -40,8 +39,7 @@ export default function ContactForm() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      console.log("Form submitted:", value)
-      toast.success("Message sent successfully!")
+      toast.success("Message sent successfully!" + JSON.stringify(value, null, 2))
       form.reset()
     },
   })

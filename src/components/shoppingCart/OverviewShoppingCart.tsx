@@ -17,7 +17,7 @@ import { useState } from "react";
 
 
 export default function OverviewShoppingCart() {
-  const { cartItems, cartQuantity, removeFromCart, getTotalPrice, clearCart } =
+  const { cartItems, cartQuantity, removeFromCart, increaseCartQuantity, decreaseCartQuantity, getTotalPrice, clearCart } =
     useShoppingCart();
   
   const [open, setOpen] = useState(false);
@@ -71,9 +71,30 @@ export default function OverviewShoppingCart() {
                     <h3 className="font-semibold">
                       {item.title ?? "Unknown product"}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Quantity: {item.quantity}
-                    </p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-6 w-6 text-xs"
+                        onClick={() => decreaseCartQuantity(item.id)}
+                      >
+                        -
+                      </Button>
+                      <span className="text-sm">{item.quantity}</span>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-6 w-6 text-xs"
+                        onClick={() => increaseCartQuantity(item.id, {
+                          title: item.title,
+                          price: item.price,
+                          discountedPrice: item.discountedPrice,
+                          image: item.image,
+                        })}
+                      >
+                        +
+                      </Button>
+                    </div>
                     <p className="font-bold">
                       ${(item.discountedPrice ?? 0).toFixed(2)}
                     </p>

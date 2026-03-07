@@ -21,7 +21,8 @@ const PRODUCTS_PER_PAGE = 12;
 function RouteComponent() {
   const matchRoute = useMatchRoute();
   const navigate = useNavigate();
-  const { page = 1 } = Route.useSearch();
+  const search = Route.useSearch();
+  const page = Number(search.page) || 1;
   const [searchTerm, setSearchTerm] = useState("");
   const isDetailRoute = Boolean(
     matchRoute({ to: "/productRoute/$id", fuzzy: false }),

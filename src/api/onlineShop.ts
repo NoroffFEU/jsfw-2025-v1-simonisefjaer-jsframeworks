@@ -92,9 +92,11 @@ export const getOnlineShopProducts = async (
   page = 1,
   limit = 12,
 ): Promise<PaginatedResponse<OnlineShopProductSummary>> => {
+  const safePage = typeof page === "number" && !isNaN(page) ? page : 1;
+  const safeLimit = typeof limit === "number" && !isNaN(limit) ? limit : 12;
   const url = new URL("https://v2.api.noroff.dev/online-shop");
-  url.searchParams.set("page", String(page));
-  url.searchParams.set("limit", String(limit));
+  url.searchParams.set("page", String(safePage));
+  url.searchParams.set("limit", String(safeLimit));
 
   const response = await fetch(url.toString());
   if (!response.ok) {

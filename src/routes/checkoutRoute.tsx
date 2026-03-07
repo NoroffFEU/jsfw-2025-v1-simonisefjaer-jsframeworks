@@ -8,7 +8,7 @@ export const Route = createFileRoute('/checkoutRoute')({
 })
 
 function RouteComponent() {
-    const { cartItems, removeFromCart, getTotalPrice, clearCart, closeCart } = useShoppingCart();
+    const { cartItems, removeFromCart, increaseCartQuantity, decreaseCartQuantity, getTotalPrice, clearCart, closeCart } = useShoppingCart();
     const navigate = useNavigate();
 
     const handlePlaceOrder = () => {
@@ -30,7 +30,26 @@ function RouteComponent() {
                 <div className="flex-1">
                     <h3 className="text-lg font-semibold">{item.title}</h3>
                     <p className="text-gray-600">Price: ${item.discountedPrice.toFixed(2)}</p>
-                    <p className="text-gray-600">Quantity: {item.quantity}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <button
+                        onClick={() => decreaseCartQuantity(item.id)}
+                        className="px-2 py-0.5 border rounded text-sm"
+                      >
+                        -
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button
+                        onClick={() => increaseCartQuantity(item.id, {
+                          title: item.title,
+                          price: item.price,
+                          discountedPrice: item.discountedPrice,
+                          image: item.image,
+                        })}
+                        className="px-2 py-0.5 border rounded text-sm"
+                      >
+                        +
+                      </button>
+                    </div>
                 </div>
                 <button
                     onClick={() => removeFromCart(item.id)}

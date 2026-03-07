@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import SpecificProductCard from "../components/specificProduct/SpecificProduct";
-import { getOnlineShopProducts } from "@/api/onlineShop";
+import { getOnlineShopDetails } from "@/api/onlineShop";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 
@@ -11,9 +11,9 @@ export const Route = createFileRoute("/productRoute/$id")({
 function RouteComponent() {
   const { id } = useParams({ from: "/productRoute/$id" });
 
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["products"],
-    queryFn: getOnlineShopProducts,
+  const { data: product, isLoading, isError, error } = useQuery({
+    queryKey: ["product", id],
+    queryFn: () => getOnlineShopDetails(id),
   });
 
   if (isLoading)
@@ -23,9 +23,6 @@ function RouteComponent() {
       error instanceof Error ? error.message : "Failed to load products";
     return <p className="px-4 py-6 text-red-600">{message}</p>;
   }
-
-  const products = data ?? [];
-  const product = products.find((p) => String(p.id) === String(id));
 
   if (!product)
     return <p className="px-4 py-6 text-gray-600">Product not found</p>;
@@ -37,7 +34,7 @@ function RouteComponent() {
       price={product.price}
       discountedPrice={product.discountedPrice}
       rating={product.rating}
-      imageUrl={product.imageUrl}
+      imageUrl={product.image.url}
       description={product.description}
     />
   );
