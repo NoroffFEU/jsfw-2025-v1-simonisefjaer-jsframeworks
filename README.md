@@ -68,6 +68,8 @@ npm install -D vitest jsdom @testing-library/react @testing-library/dom @testing
 npm install -D eslint @eslint/js typescript-eslint eslint-plugin-react-hooks eslint-plugin-react-refresh globals
 npm install -D msw
 npm install -D tw-animate-css
+npm install sonner
+npm install @tanstack/react-form
 ```
 
 ## Running the Project
@@ -117,13 +119,13 @@ npm run lint
 
 ## AI Usage/Questions for stuff i needed a deeper explanation on to understand
 
-- please explain to me when i add a new route how it works in correlation with the main root. It explained the process of when first creating a new route in a different file i then import it inside of the <outlet> are of my \_\_root folder to render it.
+- Asked AI, please explain to me when i add a new route how it works in correlation with the main root. It explained the process of when first creating a new route in a different file i then import it inside of the <outlet> are of my \_\_root folder to render it.
 
-- Please help me resolve the "any" type issue i have in my onlineShop "Reviews" object - keyValue pairs. It helped explain me how i could both add it and understand it.
+- Asked AI, Please help me resolve the "any" type issue i have in my onlineShop "Reviews" object - keyValue pairs. It helped explain me how i could both add it and understand it.
 
-- Will shadcn properly make a folder inside of my already existing components folder? Yes it will.
+- Asked Ai, Will shadcn properly make a folder inside of my already existing components folder? Yes it will.
 
-- What are the random name generated tanstack files? It was temporary cached files which i then added to .gitignore
+- Asked AI What  the random name generated tanstack files were? It was temporary cached files which i then added to .gitignore
 
 - ASked if FC (funciton component) is even nescesary anymore, which it really wasnt, so i refactored my type definition on my component to have the interface definition at the end of my const function instead of using FC. example of what it looks like now:
 
@@ -159,5 +161,9 @@ const SpecificProductCard: React.FC<SpecificProductCardProps> = ({
 - Asked AI to explain Matchroute and fuzzy for me.
 
 - Asked Ai to help me use Sheet from shadcn in my current shoppingCart setup that i created by following a tutorial from WebDevSimplified. This helped me make a sidebar for my cart which looks pretty clean.
+
+- Asked AI to help me fix some old tests i made a while ago with updated code.
+
+- Asked AI about a bug i recieved after i added some code with shadCN
 
 # SimIceDev

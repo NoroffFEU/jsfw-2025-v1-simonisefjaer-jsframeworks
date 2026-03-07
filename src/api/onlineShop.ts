@@ -75,18 +75,37 @@ export const getOnlineShopDetails = async (
   };
 };
 
-export const getOnlineShopProducts = async (): Promise<
-  OnlineShopProductSummary[]
-> => {
-  const response = await fetch("https://v2.api.noroff.dev/online-shop");
+export type PaginatedResponse<T> = {
+  data: T[];
+  meta: {
+    isFirstPage: boolean;
+    isLastPage: boolean;
+    currentPage: number;
+    previousPage: number | null;
+    nextPage: number | null;
+    pageCount: number;
+    totalCount: number;
+  };
+};
+
+export const getOnlineShopProducts = async (
+  page = 1,
+  limit = 12,
+): Promise<PaginatedResponse<OnlineShopProductSummary>> => {
+  const url = new URL("https://v2.api.noroff.dev/online-shop");
+  url.searchParams.set("page", String(page));
+  url.searchParams.set("limit", String(limit));
+
+  const response = await fetch(url.toString());
   if (!response.ok) {
     throw new Error("Failed to fetch products");
   }
 
   const json = await response.json();
   const items = json.data ?? [];
+  const meta = json.meta;
 
-  return items.map(
+  const products = items.map(
     (item: {
       id: string | number;
       title?: string;
@@ -106,4 +125,6 @@ export const getOnlineShopProducts = async (): Promise<
       rating: item.rating,
     }),
   );
+
+  return { data: products, meta };
 };

@@ -1,6 +1,7 @@
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRoute, redirect } from "@tanstack/react-router";
 import NavBar from "../components/navBar/NavBar";
 import Footer from "../components/footer/Footer";
+import { Toaster } from "sonner";
 
 function RootLayout() {
   return (
@@ -10,10 +11,16 @@ function RootLayout() {
         <Outlet />
       </main>
       <Footer />
+      <Toaster />
     </div>
   );
 }
 
 export const Route = createRootRoute({
   component: RootLayout,
+  beforeLoad: ({ location }) => {
+    if (location.pathname === "/") {
+      throw redirect({ to: "/homeRoute" });
+    }
+  },
 });

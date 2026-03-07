@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProductRouteRouteImport } from './routes/productRoute'
+import { Route as HomeRouteRouteImport } from './routes/homeRoute'
 import { Route as ContactRouteRouteImport } from './routes/contactRoute'
 import { Route as CheckoutSuccessRouteRouteImport } from './routes/checkoutSuccessRoute'
 import { Route as CheckoutRouteRouteImport } from './routes/checkoutRoute'
@@ -18,6 +19,11 @@ import { Route as ProductRouteIdRouteImport } from './routes/productRoute.$id'
 const ProductRouteRoute = ProductRouteRouteImport.update({
   id: '/productRoute',
   path: '/productRoute',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRouteRoute = HomeRouteRouteImport.update({
+  id: '/homeRoute',
+  path: '/homeRoute',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRouteRoute = ContactRouteRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/checkoutRoute': typeof CheckoutRouteRoute
   '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
+  '/homeRoute': typeof HomeRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/checkoutRoute': typeof CheckoutRouteRoute
   '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
+  '/homeRoute': typeof HomeRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   '/checkoutRoute': typeof CheckoutRouteRoute
   '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
+  '/homeRoute': typeof HomeRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
@@ -69,6 +78,7 @@ export interface FileRouteTypes {
     | '/checkoutRoute'
     | '/checkoutSuccessRoute'
     | '/contactRoute'
+    | '/homeRoute'
     | '/productRoute'
     | '/productRoute/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -76,6 +86,7 @@ export interface FileRouteTypes {
     | '/checkoutRoute'
     | '/checkoutSuccessRoute'
     | '/contactRoute'
+    | '/homeRoute'
     | '/productRoute'
     | '/productRoute/$id'
   id:
@@ -83,6 +94,7 @@ export interface FileRouteTypes {
     | '/checkoutRoute'
     | '/checkoutSuccessRoute'
     | '/contactRoute'
+    | '/homeRoute'
     | '/productRoute'
     | '/productRoute/$id'
   fileRoutesById: FileRoutesById
@@ -91,6 +103,7 @@ export interface RootRouteChildren {
   CheckoutRouteRoute: typeof CheckoutRouteRoute
   CheckoutSuccessRouteRoute: typeof CheckoutSuccessRouteRoute
   ContactRouteRoute: typeof ContactRouteRoute
+  HomeRouteRoute: typeof HomeRouteRoute
   ProductRouteRoute: typeof ProductRouteRouteWithChildren
 }
 
@@ -101,6 +114,13 @@ declare module '@tanstack/react-router' {
       path: '/productRoute'
       fullPath: '/productRoute'
       preLoaderRoute: typeof ProductRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homeRoute': {
+      id: '/homeRoute'
+      path: '/homeRoute'
+      fullPath: '/homeRoute'
+      preLoaderRoute: typeof HomeRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contactRoute': {
@@ -150,6 +170,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRouteRoute: CheckoutRouteRoute,
   CheckoutSuccessRouteRoute: CheckoutSuccessRouteRoute,
   ContactRouteRoute: ContactRouteRoute,
+  HomeRouteRoute: HomeRouteRoute,
   ProductRouteRoute: ProductRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport

@@ -2,7 +2,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
-import { mergeClassNames } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 /* eslint-disable react-refresh/only-export-components */
 
@@ -57,7 +57,7 @@ function Button({
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      className={mergeClassNames(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
   );
