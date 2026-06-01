@@ -17,7 +17,7 @@ function RouteComponent() {
   });
 
   if (isLoading)
-    return <p className="px-4 py-6 text-gray-600">Loading products...</p>;
+    return <p className="px-4 py-6 text-gray-600">Loading product...</p>;
   if (isError) {
     const message =
       error instanceof Error ? error.message : "Failed to load products";
@@ -36,6 +36,8 @@ function RouteComponent() {
       rating={product.rating}
       imageUrl={product.image.url}
       description={product.description}
+      tags={product.tags}
+      reviews={product.reviews}
     />
   );
 }
