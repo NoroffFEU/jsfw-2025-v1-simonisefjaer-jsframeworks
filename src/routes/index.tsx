@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Link } from '@tanstack/react-router'
 import { Button } from '@headlessui/react'
-export const Route = createFileRoute('/homeRoute')({
+export const Route = createFileRoute('/')({
   component: RouteComponent,
 })
 

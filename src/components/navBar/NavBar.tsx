@@ -12,7 +12,7 @@ import { Link } from "@tanstack/react-router";
 import OverviewShoppingCart from "../shoppingCart/OverviewShoppingCart";
 
 const navigation = [
-  { name: "Home", href: "/homeRoute", current: true },
+  { name: "Home", href: "/", current: true },
   { name: "Products", href: "/productRoute", current: false },
   { name: "Contact", href: "/contactRoute", current: false },
 ];

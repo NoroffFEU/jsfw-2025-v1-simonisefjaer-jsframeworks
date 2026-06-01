@@ -58,7 +58,7 @@ describe("NavBar", () => {
   it("should have correct href attributes", () => {
     renderNavBar();
     const homeLink = screen.getByRole("link", { name: /home/i });
-    expect(homeLink).toHaveAttribute("href", "/homeRoute");
+    expect(homeLink).toHaveAttribute("href", "/");
 
     const productsLink = screen.getByRole("link", { name: /products/i });
     expect(productsLink).toHaveAttribute("href", "/productRoute");

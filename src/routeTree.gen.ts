@@ -10,20 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProductRouteRouteImport } from './routes/productRoute'
-import { Route as HomeRouteRouteImport } from './routes/homeRoute'
 import { Route as ContactRouteRouteImport } from './routes/contactRoute'
 import { Route as CheckoutSuccessRouteRouteImport } from './routes/checkoutSuccessRoute'
 import { Route as CheckoutRouteRouteImport } from './routes/checkoutRoute'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductRouteIdRouteImport } from './routes/productRoute.$id'
 
 const ProductRouteRoute = ProductRouteRouteImport.update({
   id: '/productRoute',
   path: '/productRoute',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomeRouteRoute = HomeRouteRouteImport.update({
-  id: '/homeRoute',
-  path: '/homeRoute',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRouteRoute = ContactRouteRouteImport.update({
@@ -41,6 +36,11 @@ const CheckoutRouteRoute = CheckoutRouteRouteImport.update({
   path: '/checkoutRoute',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductRouteIdRoute = ProductRouteIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -48,62 +48,62 @@ const ProductRouteIdRoute = ProductRouteIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/checkoutRoute': typeof CheckoutRouteRoute
   '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
-  '/homeRoute': typeof HomeRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/checkoutRoute': typeof CheckoutRouteRoute
   '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
-  '/homeRoute': typeof HomeRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/checkoutRoute': typeof CheckoutRouteRoute
   '/checkoutSuccessRoute': typeof CheckoutSuccessRouteRoute
   '/contactRoute': typeof ContactRouteRoute
-  '/homeRoute': typeof HomeRouteRoute
   '/productRoute': typeof ProductRouteRouteWithChildren
   '/productRoute/$id': typeof ProductRouteIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/checkoutRoute'
     | '/checkoutSuccessRoute'
     | '/contactRoute'
-    | '/homeRoute'
     | '/productRoute'
     | '/productRoute/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/checkoutRoute'
     | '/checkoutSuccessRoute'
     | '/contactRoute'
-    | '/homeRoute'
     | '/productRoute'
     | '/productRoute/$id'
   id:
     | '__root__'
+    | '/'
     | '/checkoutRoute'
     | '/checkoutSuccessRoute'
     | '/contactRoute'
-    | '/homeRoute'
     | '/productRoute'
     | '/productRoute/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   CheckoutRouteRoute: typeof CheckoutRouteRoute
   CheckoutSuccessRouteRoute: typeof CheckoutSuccessRouteRoute
   ContactRouteRoute: typeof ContactRouteRoute
-  HomeRouteRoute: typeof HomeRouteRoute
   ProductRouteRoute: typeof ProductRouteRouteWithChildren
 }
 
@@ -114,13 +114,6 @@ declare module '@tanstack/react-router' {
       path: '/productRoute'
       fullPath: '/productRoute'
       preLoaderRoute: typeof ProductRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/homeRoute': {
-      id: '/homeRoute'
-      path: '/homeRoute'
-      fullPath: '/homeRoute'
-      preLoaderRoute: typeof HomeRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contactRoute': {
@@ -142,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/checkoutRoute'
       fullPath: '/checkoutRoute'
       preLoaderRoute: typeof CheckoutRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/productRoute/$id': {
@@ -167,10 +167,10 @@ const ProductRouteRouteWithChildren = ProductRouteRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   CheckoutRouteRoute: CheckoutRouteRoute,
   CheckoutSuccessRouteRoute: CheckoutSuccessRouteRoute,
   ContactRouteRoute: ContactRouteRoute,
-  HomeRouteRoute: HomeRouteRoute,
   ProductRouteRoute: ProductRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
